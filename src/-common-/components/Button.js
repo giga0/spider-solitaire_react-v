@@ -1,5 +1,6 @@
-import React from 'react';
-import classes from './Button.module.scss';
+import React from 'react'
+
+import classes from './Button.module.scss'
 
 function Button(props) {
   return (
@@ -9,7 +10,7 @@ function Button(props) {
       onClick={ props.click }>
       { props.children }
     </button>
-  );
+  )
 }
 
-export default Button;
+export default Button
