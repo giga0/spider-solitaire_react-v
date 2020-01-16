@@ -1,0 +1,44 @@
+@import '../-common-/assets/style/settings/module-settings';
+
+.scores {
+  h3 {
+    @include fontSizeRem(18, 30);
+    font-weight: 700;
+    text-align: center;
+    margin: 2rem 0;
+    @include breakpoint(desktop) {
+      margin: 4rem 0;
+    }
+  }
+  &__tables {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include breakpoint(desktop) {
+      flex-direction: row;
+      align-items: normal;
+    }
+  }
+  &__table {
+    width: 90%;
+    min-width: 300px;
+    @include breakpoint(desktop) {
+      width: 20vw;
+      min-width: 90rem;
+      margin-right: 4rem;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  .go-back-btn {
+    text-align: center;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    @include breakpoint(desktop) {
+      margin-top: 3rem;
+      margin-bottom: 2rem;
+    }
+  }
+}

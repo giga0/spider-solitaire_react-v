@@ -1,23 +1,22 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { connect } from 'react-redux'
+
 import classes from './Home.module.scss'
+import userActions from '../-common-/store/actions/user/actions'
 
 import Btn from '../-common-/components/Button'
 
-function Home() {
-  const [ userName, setUserName ] = useState('')
+function Home(props) {
   const [ errorMsg, setErrorMsg ] = useState('')
-
-  const saveUser = event => {
-    // this.$store.commit('user/setUser', e.target.value)
-    setUserName(event.target.value)
-  }
+  const history = useHistory()
 
   const playGame = () => {
     console.log('playGame')
   }
 
   const goToHighScores = () => {
-    console.log('goToHighScores')
+    history.push('/high-scores')
   }
 
   const errorToDisplay = () => errorMsg && <p className={classes.home__error}>{ errorMsg }</p>
@@ -29,8 +28,8 @@ function Home() {
         <input
           type="text"
           placeholder="Type your name here..."
-          value={ userName }
-          onChange={ saveUser } />
+          value={ props.userName }
+          onChange={ props.saveUser } />
       </div>
       <div className={ classes.home__buttons }>
         <Btn click={ playGame }>Play a game</Btn>
@@ -41,4 +40,16 @@ function Home() {
   )
 }
 
-export default Home
+const mapStateToProps = state => {
+  return {
+    userName: state.userName
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    saveUser: event => userActions.setUser(dispatch, event.target.value)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
